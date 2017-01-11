@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "796f004e-8ca1-11e4-8487-d1132ac2dc54++7009",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "796f004e-8ca1-11e4-8487-d1132ac2dc54++7009" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "796f004e-8ca1-11e4-8487-d1132ac2dc54++7009" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C2910371-A9C3-4026-837F-278C7AECF24A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "796f004e-8ca1-11e4-8487-d1132ac2dc54++7009" : "objc_proj\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MTA-Demo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "tags\/MTA\/public\/V2.1R100\/MTA_V1\/public\/MTA-Demo\/MTA-Demo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "svn+ssh:\/\/tc-svn.tencent.com\/doss\/doss_da_rep",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "796f004e-8ca1-11e4-8487-d1132ac2dc54++7009"
+    }
+  ]
+}

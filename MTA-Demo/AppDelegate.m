@@ -9,34 +9,30 @@
 #import "AppDelegate.h"
 #import "FirstViewController.h"
 #import "SecondViewController.h"
-#import "Feedback/FeedbackViewController.h"
 #import "MTA.h"
 #import "MTAConfig.h"
 
 @implementation AppDelegate
 
-- (void)dealloc
-{
-    [_window release];
-    [_tabBarController release];
-    [super dealloc];
-}
+//- (void)dealloc
+//{
+//    [_window release];
+//    [_tabBarController release];
+//    [super dealloc];
+//}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1 = [[[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil] autorelease];
-    UIViewController *viewController2 = [[[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil] autorelease];
+    UIViewController *viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController" bundle:nil];
+    UIViewController *viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController" bundle:nil];
     
-    //UIViewController *feedViewController = [[[FeedbackViewController alloc] initWithNibName:@"FeedbackViewController" bundle:nil] autorelease];
-    
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = @[viewController1, viewController2];
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
-    
-    [[MTAConfig getInstance] setDebugEnable:TRUE];
+
     //[[MTAConfig getInstance] setCustomerUserID:@"1234"];
     
     //[[MTAConfig getInstance] setMaxReportEventLength:1280];
@@ -47,24 +43,29 @@
     //[[MTAConfig getInstance] setCustomerUserID:@"1234"];
     
     //自定义ifa
-    [[MTAConfig getInstance] setIfa:@"myIfa"];
+//    [[MTAConfig getInstance] setIfa:@"myIfa"];
+     [[MTAConfig getInstance] setAutoExceptionCaught:false];
     
-    //push服务的deviceToken
-    [[MTAConfig getInstance] setPushDeviceToken:@"myXGDeviceToken"];
+    [[MTAConfig getInstance] setSmartReporting:YES];
     
-    //[[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_BATCH];
+    [[MTAConfig getInstance] setReportStrategy:MTA_STRATEGY_INSTANT];
+
+    //自定义crash处理函数，可以获取到mta生成的crash信息
+    void (^errorCallback)(NSString *) = ^(NSString * errorString)
+    {
+        NSLog(@"error_callback %@",errorString);
+    };
+    [[MTAConfig getInstance] setCrashCallback:errorCallback];
     
-    //[[MTAConfig getInstance] setSmartReporting:FALSE];
+    [[MTAConfig getInstance] setDebugEnable:true];
     
-      //开发key
-    [MTA startWithAppkey:@"IG4BJ2YGZ14F"];
-    
-    //[MTA startWithAppkey:@"IG4BJ2YGZ14F"];
+    //开发key
+    [MTA startWithAppkey:@"I2E3KXDU1E2W"];
+    //[MTA startWithAppkey:@"123"];
     
     //[MTA reportQQ:@"5059175"];
     
-    [MTA reportAccount:@"5059175" type:1 ext:@"test"];
-    
+    //[MTA reportAccount:@"5059175" type:1 ext:@"test"];
     /*
     if(![MTA startWithAppkey:@"I8S27BWQ6HYL" checkedSdkVersion:MTA_SDK_VERSION]){
         //handle exception
@@ -78,19 +79,17 @@
 
     //[MTA trackError:@"I'm error"];
     
-    return YES;
+	return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+	// 统计应用时长,结束时打点
+	[MTA trackActiveEnd];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -100,7 +99,8 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+	// 统计应用时长,开始时打点
+	[MTA trackActiveBegin];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

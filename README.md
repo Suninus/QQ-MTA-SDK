@@ -1,5 +1,7 @@
 QQ-MTA-SDK
 ==========
+updated to 1.6.6
+
 
 腾讯MTA统计1.4.1.4  方便使用pod来安装。参考http://mta.qq.com/mta/
 

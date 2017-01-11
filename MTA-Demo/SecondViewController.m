@@ -28,8 +28,9 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 }
+
 -(IBAction) clickExceptionButton:(id)sender{
     //NSLog(@"Error button clicked");
     NSException* ex = [NSException exceptionWithName:@"DemoException" reason:@"NoReason" userInfo:nil];
@@ -40,8 +41,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
-    [NSArray arrayWithObject:nil];
+    
 }
 -(IBAction) clickStartKvButton:(id)sender{
     //NSLog(@"Start button clicked");
@@ -52,7 +52,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 }
 -(IBAction) clickEndKvButton:(id)sender{
     [MTA trackCustomKeyValueEventEnd :@"KVEvent" props:[NSDictionary dictionaryWithObject:@"Value" forKey:@"TimeKey"]];
@@ -62,7 +62,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 }
 
 
@@ -85,8 +85,8 @@
 -(void) viewDidAppear:(BOOL)animated
 {
     NSString* page = @"Page2";
-    [super viewDidAppear:animated];
     [MTA trackPageViewBegin:page];
+    [super viewDidAppear:animated];
     
 }
 
@@ -94,6 +94,7 @@
 {
     NSString* page = @"Page2";
     [MTA trackPageViewEnd:page];
+	[super viewWillDisappear:animated];
 }
 
 -(void) viewDidDisappear:(BOOL)animated

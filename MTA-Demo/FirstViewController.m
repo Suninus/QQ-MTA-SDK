@@ -29,21 +29,19 @@
     [NSArray arrayWithObjects:(@"arg1"), nil];
     [MTA trackCustomEvent:@"NormalEvent" args:[NSArray arrayWithObject:@"arg0"]];
     
-    
-    
     //[MTA trackCustomEvent:@"NormalEvent" args:[NSArray arrayWithObjects:(@"arg1"), nil]];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Event"
                                                     message:@"生成普通事件"
                                                    delegate:nil
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
-    /* Trigger a crash Test */
+    /* Trigger a crash Test
     NSArray *array = [NSArray array];
     [array objectAtIndex:23];
-     
+    */
     
     [alert show];
-    [alert release];
+//    
 }
 -(IBAction) clickErrorButton:(id)sender{
     //NSLog(@"Error button clicked");
@@ -55,7 +53,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 
 }
 -(IBAction) clickStartButton:(id)sender{
@@ -67,7 +65,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 }
 -(IBAction) clickEndButton:(id)sender{
     //NSLog(@"End button clicked");
@@ -78,7 +76,7 @@
                                           cancelButtonTitle:@"OK"
                                           otherButtonTitles:nil];
     [alert show];
-    [alert release];
+    
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -101,13 +99,14 @@
 {
     NSString* page = @"Page1";
     [MTA trackPageViewBegin:page];
-    
+	[super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     NSString* page = @"Page1";
     [MTA trackPageViewEnd:page];
+	[super viewWillDisappear:animated];
 }
 
 /*

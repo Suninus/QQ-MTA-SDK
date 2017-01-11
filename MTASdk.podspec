@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "MTASdk"
-  s.version      = "1.4.1.1"
+  s.version      = "1.6.6"
   s.summary      = "app statistic solution for iOS as known as MTA."
 
   s.description  = <<-DESC
@@ -73,7 +73,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/suninus/QQ-MTA-SDK.git", :tag => "1.4.1.1" }
+  s.source       = { :git => "https://github.com/suninus/QQ-MTA-SDK.git", :tag => s.version }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
